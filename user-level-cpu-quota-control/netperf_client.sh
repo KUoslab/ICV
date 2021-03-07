@@ -5,7 +5,7 @@ python code/input.py
 
 while read quota
 do
-    sudo "sed -i "1s/.*/$quota/g" /sys/fs/cgroup/cpu/machine/qemu-5-test.libvirt-qemu/emulator/cpu.cfs_quota_us"
+    sudo "sed -i \"1s/.*/$quota/g\" /sys/fs/cgroup/cpu/machine/qemu-5-test.libvirt-qemu/emulator/cpu.cfs_quota_us"
 
     # connect on netserver
     ssh-keygen -f "/home/test/.ssh/known_hosts" -R "163.152.20.144"

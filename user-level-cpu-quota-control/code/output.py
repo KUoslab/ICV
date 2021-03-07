@@ -1,9 +1,9 @@
 import csv
 import sys
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-import pandas as pd
-from pandas import DataFrame
+# import matplotlib.pyplot as plt
+# import matplotlib as mpl
+# import pandas as pd
+# from pandas import DataFrame
 
 # extract network throughput
 with open ("output_full.txt",'r') as f:
