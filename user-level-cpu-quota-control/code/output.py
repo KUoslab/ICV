@@ -6,7 +6,7 @@ import sys
 # from pandas import DataFrame
 
 # extract network throughput
-with open ("output_full.txt",'r') as f:
+with open ("data/output_full.txt",'r') as f:
     data = list(f.readlines()[6])
     flag = 0
     num = 0
@@ -24,7 +24,7 @@ throughput = ''.join(list).strip()
 
 # output.csv : (cpu quota, throughput)
 quota = sys.argv[1]
-f = open('output.csv','a',newline='')
+f = open('data/output.csv','a')
 w = csv.writer(f)
 w.writerow([quota,throughput])
 

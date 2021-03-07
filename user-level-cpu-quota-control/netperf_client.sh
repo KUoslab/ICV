@@ -5,10 +5,11 @@ python code/input.py
 
 while read quota
 do
-    sudo "sed -i \"1s/.*/$quota/g\" /sys/fs/cgroup/cpu/machine/qemu-5-test.libvirt-qemu/emulator/cpu.cfs_quota_us"
+    echo $quota
+	sed -i "1s/.*/$quota/g" /sys/fs/cgroup/cpu/machine/qemu-5-test.libvirt-qemu/emulator/cpu.cfs_quota_us
 
     # connect on netserver
-    ssh-keygen -f "/home/test/.ssh/known_hosts" -R "163.152.20.144"
+    # sudo ssh-keygen -f "/root/.ssh/known_hosts" -R "163.152.20.144"
     # sudo apt install sshpass 
     sshpass -p'1' ssh -oStrictHostKeyChecking=no storage@163.152.20.144 "netperf -H 163.152.20.212 -l 120 -- -m 1024" > data/output_full.txt
 
