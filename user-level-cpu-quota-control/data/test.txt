@@ -1,7 +1,0 @@
-10
-Recv   Send    Send                          
-Socket Socket  Message  Elapsed              
-Size   Size    Size     Time     Throughput  
-bytes  bytes   bytes    secs.    10^6bits/sec  
-
-131072  16384   1024    120.03    941.44   
