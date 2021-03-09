@@ -22,4 +22,4 @@ do
     sleep 1s
 done < data/input.csv
 
-# 그래프 그리기 : output.csv [cpu quota / network throughput]
+# graph : output.csv [cpu quota / network throughput]
