@@ -1,60 +1,29 @@
 import sys
-from model.ner_model import NERModel
-from model.config import Config
+import pandas as pd
+import numpy as np
+from tabulate import tabulate
+import json
+import joblib
 
-# 결과 리턴
-# return render_template('index.html', label=label)
+def calculate_pps(df):
+    # df 풀어헤쳐서 pkt size, bandwidth 얻기
+    # 그 두 개로 pps 계산
+    pps = 50000
+    return pps
 
-
-def align_data(data):
-    """Given dict with lists, creates aligned strings
-    Adapted from Assignment 3 of CS224N
-    Args:
-        data: (dict) data["x"] = ["I", "love", "you"]
-              (dict) data["y"] = ["O", "O", "O"]
-    Returns:
-        data_aligned: (dict) data_align["x"] = "I love you"
-                           data_align["y"] = "O O    O  "
-    """
-    spacings = [max([len(seq[i]) for seq in data.values()])
-                for i in range(len(data[list(data.keys())[0]]))]
-    data_aligned = dict()
-
-    # for each entry, create aligned string
-    for key, seq in data.items():
-        str_aligned = ""
-        for token, spacing in zip(seq, spacings):
-            str_aligned += token + " " * (spacing - len(token) + 1)
-
-        data_aligned[key] = str_aligned
-
-    return data_aligned
-
+def print_df(df):
+    print(tabulate(df, headers='keys', tablefmt='psql')) 
 
 def get_model_api():
-    """Returns lambda function for api"""
     model = sys.argv[1]
 
-    def model_api(input_data):
-        """
-        Args:
-            input_data: submitted to the API, raw string
-        Returns:
-            output_data: after some transformation, to be
-                returned to the API
-        """
-        # 2. process input
-        punc = [",", "?", ".", ":", ";", "!", "(", ")", "[", "]"]
-        s = "".join(c for c in input_data if c not in punc)
-        words_raw = s.strip().split(" ")
+    def model_api(df):
+        df.loc['pps_tx'] = [calculate_pps(df)]
+        df.loc['cpu_usage'] = [60.0]
+        print_df(df)
 
-        # 3. call model predict function
-        preds = model.predict(words_raw)
-
-        # 4. process the output
-        output_data = align_data({"input": words_raw, "output": preds})
-
-        # 5. return the output for the api
-        return output_data
+        preds = model.predict(df)
+        print(preds)
+        return preds
 
     return model_api
