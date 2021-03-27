@@ -4,13 +4,14 @@ import joblib
 import numpy as np
 import pandas as pd
 import json
+import math
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
 model_name = sys.argv[1]
-var_packet_size = sys.argv[1]
-var_bandwidth_tx = sys.argv[1]
-var_pps_tx = var_bandwidth_tx/var_packet_size
+var_packet_size = sys.argv[2]
+var_bandwidth_tx = sys.argv[3]
+var_pps_tx = math.ceil(var_bandwidth_tx/float(var_packet_size))
 
 model = joblib.load('../model/' + model_name)
 dataset = pd.read_csv('../data/cpu_quota.csv', name=['thread_quota, packet_size','bandwidth_tx', 'pps_tx', 'cpu_usage'])
