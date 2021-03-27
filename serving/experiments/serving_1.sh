@@ -1,9 +1,10 @@
-PATH=~/Desktop/Inferencing-CPU-for-network-performance-in-virtualized-environments/serving/experiments
-VM=5-test
+PATH=~/hwlee/Inferencing-CPU-for-network-performance-in-virtualized-environments/serving/experiments
+VM=1-test
+model_name=random_forest
 
 while IFS=',' read pkt_size bandwidth_tx
 do
-    python3 $PATH/code/serving_1.py random_forest $pkt_size $bandwidth_tx >> cpu_quota.txt
+    python3 $PATH/code/serving_1.py $model_name $pkt_size $bandwidth_tx >> cpu_quota.txt
     quota=$(<cpu_quota.txt)
     rm cpu_quota.txt
 
@@ -12,7 +13,8 @@ do
 
     sshpass -p'1' ssh -oStrictHostKeyChecking=no storage@163.152.20.144 "netperf -H 163.152.20.212 -l 120 -- -m 1024" > $PATH/data/output_full.txt
 
-    python $PATH/code/output.py random_forest $pkt_size $bandwidth_tx $quota
+    python $PATH/code/output.py $model_name $pkt_size $bandwidth_tx $quota
 done < $PATH/data/input.csv
 
-# graph : output.csv [actual network throughput | bandwidth_tx | ]
+# graph : output_$model_name.csv 
+# [rmsle | actual network throughput | bandwidth_tx(SLO) | pkt_size | quota]

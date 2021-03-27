@@ -8,10 +8,18 @@ import math
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
+model_name = sys.argv[1]
+var_packet_size = int(sys.argv[2])
+var_bandwidth_tx = float(sys.argv[3])
+# var_pps_tx = math.ceil(var_bandwidth_tx/float(var_packet_size))
+var_pps_tx = 36403
+
+'''
 model_name = "random_forest"
 var_packet_size = 128
 var_bandwidth_tx = 408.74
 var_pps_tx = 36403
+'''
 
 model = joblib.load('./model/' + model_name)
 dataset = pd.read_csv('./data/cpu_quota.csv', names=['thread_quota', 'packet_size','bandwidth_tx', 'pps_tx', 'cpu_usage'])
