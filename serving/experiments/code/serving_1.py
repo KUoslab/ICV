@@ -8,19 +8,19 @@ import math
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
-model_name = sys.argv[1]
-var_packet_size = sys.argv[2]
-var_bandwidth_tx = sys.argv[3]
-var_pps_tx = math.ceil(var_bandwidth_tx/float(var_packet_size))
+model_name = "random_forest"
+var_packet_size = 128
+var_bandwidth_tx = 408.74
+var_pps_tx = 36403
 
-model = joblib.load('../model/' + model_name)
-dataset = pd.read_csv('../data/cpu_quota.csv', name=['thread_quota, packet_size','bandwidth_tx', 'pps_tx', 'cpu_usage'])
+model = joblib.load('./model/' + model_name)
+dataset = pd.read_csv('./data/cpu_quota.csv', names=['thread_quota', 'packet_size','bandwidth_tx', 'pps_tx', 'cpu_usage'])
 y = np.array(dataset['thread_quota'])
 X = np.array(dataset.drop('thread_quota', axis=1))
 train_X, test_X, train_y, test_y = train_test_split(X,y, test_size=0.20, random_state=40)
 
 min_max_scalar = MinMaxScaler()
-train_X_ppr = min_max_scaler.fit_transform(train_X)
+train_X_ppr = min_max_scalar.fit_transform(train_X)
 train_y_ppr = min_max_scalar.fit_transform(train_y.reshape(-1,1))
 
 df = pd.DataFrame(pd.Series({'packet_size':var_packet_size, 'bandwidth_tx': var_bandwidth_tx}))
