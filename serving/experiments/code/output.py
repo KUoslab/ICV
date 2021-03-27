@@ -9,7 +9,7 @@ bandwidth_tx = sys.argv[3]
 quota = sys.argv[4]
 
 # extract network throughput
-with open ("data/output_full.txt",'r') as f:
+with open("./data/output_full.txt",'r') as f:
     data = list(f.readlines()[6])
     flag = 0
     num = 0
@@ -26,11 +26,11 @@ with open ("data/output_full.txt",'r') as f:
 throughput = ''.join(list).strip()
 
 # rmsle
-rmsle = np.sqrt(mean_squared_log_error(bandwidth_tx, throughput))
+# rmsle = np.sqrt(mean_squared_log_error([bandwidth_tx], [throughput]))
 
 # output_$model_name.csv
-# [rmsle | actual network throughput | bandwidth_tx(SLO) | pkt_size | quota]
-f = open('data/output'+model_name+'csv','a')
+# [actual network throughput | bandwidth_tx(SLO) | pkt_size | quota]
+f = open('./data/output_'+model_name+'.csv','a')
 w = csv.writer(f)
-w.writerow([rmsle,throughput,bandwidth_tx,pkt_size,quota])
+w.writerow([throughput,bandwidth_tx,pkt_size,quota])
 

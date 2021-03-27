@@ -10,9 +10,10 @@ from sklearn.preprocessing import MinMaxScaler
 
 model_name = sys.argv[1]
 var_packet_size = int(sys.argv[2])
+var_packet_size = 84
 var_bandwidth_tx = float(sys.argv[3])
 # var_pps_tx = math.ceil(var_bandwidth_tx/float(var_packet_size))
-var_pps_tx = 36403
+var_pps_tx = math.ceil((var_bandwidth_tx/10)*14881)
 
 '''
 model_name = "random_forest"
@@ -22,7 +23,7 @@ var_pps_tx = 36403
 '''
 
 model = joblib.load('./model/' + model_name)
-dataset = pd.read_csv('./data/cpu_quota.csv', names=['thread_quota', 'packet_size','bandwidth_tx', 'pps_tx', 'cpu_usage'])
+dataset = pd.read_csv('./data/training.csv', names=['thread_quota', 'packet_size','bandwidth_tx', 'pps_tx', 'cpu_usage'])
 y = np.array(dataset['thread_quota'])
 X = np.array(dataset.drop('thread_quota', axis=1))
 train_X, test_X, train_y, test_y = train_test_split(X,y, test_size=0.20, random_state=40)
