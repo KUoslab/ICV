@@ -2,7 +2,7 @@ PATH=~/Desktop/Inferencing-CPU-for-network-performance-in-virtualized-environmen
 
 while IFS=',' read pkt_size bandwidth_tx
 do
-    quota=$(python $PATH/code/serving_1.py random_forest $pkt_size $bandwidth_tx)
+    python $PATH/code/serving_1.py random_forest $pkt_size $bandwidth_tx >> cpu_quota.log
 
     cd /sys/fs/cgroup/cpu/machine/qemu-5-test.libvirt-qemu/emulator
     sudo cgset -r cpu.cfs_quota_us=$quota machine/qemu-5-test.libvirt-qemu/emulator

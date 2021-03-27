@@ -33,4 +33,4 @@ preds = model.predict(input_data)
 output_data = min_max_scalar.inverse_transform(preds.reshape(-1, 1))
 cpu_quota = output_data[0][0]
 
-return cpu_quota
+print(cpu_quota)
