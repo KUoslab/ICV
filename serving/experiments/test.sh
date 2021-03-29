@@ -6,8 +6,14 @@ tmp=0
 
 python3 $EXPATH/code/serving_$model_name.py
 
-while IFS=',' read pkt_size bandwidth_tx pps_tx cpu_usage quota
+while read line
 do
+    IFS=',' read -a ARR <<< $line
+    pkt_size=${ARR[0]}
+    bandwidth_tx=${ARR[1]}
+    pps_tx=${ARR[2]}
+    cpu_usage=${ARR[3]}
+    quota=${ARR[4]}
     echo $quota $pkt_size $bandwidth_tx $pps_tx $cpu_usage $quota
 
     cd $CGPATH
