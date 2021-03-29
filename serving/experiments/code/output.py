@@ -4,9 +4,8 @@ import numpy as np
 from sklearn.metrics import mean_squared_log_error
 
 model_name = sys.argv[1]
-pkt_size = sys.argv[2]
-bandwidth_tx = sys.argv[3]
-quota = sys.argv[4]
+bandwidth_tx = sys.argv[2]
+tmp = sys.argv[3]
 
 # extract network throughput
 with open("./data/output_full.txt",'r') as f:
@@ -28,9 +27,11 @@ throughput = ''.join(list).strip()
 # rmsle
 # rmsle = np.sqrt(mean_squared_log_error([bandwidth_tx], [throughput]))
 
-# output_$model_name.csv
-# [actual network throughput | bandwidth_tx(SLO) | pkt_size | quota]
-f = open('./data/output_'+model_name+'.csv','a')
-w = csv.writer(f)
-w.writerow([throughput,bandwidth_tx,pkt_size,quota])
+# f = open('./data/output_'+model_name+'.csv','a')
+# w = csv.writer(f)
+# w.writerow([throughput,bandwidth_tx,pkt_size,quota])
 
+wb = load_workbook('../data/result.xlsx')
+ws = wb["result"]
+ws.cell(tmp+2, 1).value = throughput
+ws.cell(tmp+2, 2).value = bandwidth_tx
