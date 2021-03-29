@@ -18,10 +18,10 @@ var_cpu_usage = 100.18
 '''
 
 model_name = "random_forest"
-var_packet_size = 1024
-var_bandwidth_tx = 2640.0
-var_pps_tx = 224306
-var_cpu_usage = 100.18
+var_packet_size = 64
+var_bandwidth_tx = 311.01
+var_pps_tx = 27030
+var_cpu_usage = 71.88
 
 
 model = joblib.load('./model/' + model_name)
