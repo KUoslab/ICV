@@ -27,11 +27,6 @@ throughput = ''.join(list).strip()
 # rmsle
 # rmsle = np.sqrt(mean_squared_log_error([bandwidth_tx], [throughput]))
 
-# f = open('./data/output_'+model_name+'.csv','a')
-# w = csv.writer(f)
-# w.writerow([throughput,bandwidth_tx,pkt_size,quota])
-
-wb = load_workbook('../data/result.xlsx')
-ws = wb["result"]
-ws.cell(tmp+2, 1).value = throughput
-ws.cell(tmp+2, 2).value = bandwidth_tx
+f = open('./data/output_'+model_name+'.csv','a')
+w = csv.writer(f)
+w.writerow([throughput,bandwidth_tx])

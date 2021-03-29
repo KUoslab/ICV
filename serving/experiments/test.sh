@@ -1,6 +1,6 @@
+VM=1-test
 EXPATH=~/hwlee/Inferencing-CPU-for-network-performance-in-virtualized-environments/serving/experiments
 CGPATH=/sys/fs/cgroup/cpu/machine/qemu-$VM.libvirt-qemu/emulator
-VM=1-test
 model_name=random_forest
 tmp=0
 
