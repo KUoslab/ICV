@@ -16,5 +16,5 @@ do
     sshpass -p'1' ssh -oStrictHostKeyChecking=no storage@163.152.20.144 "netperf -H 163.152.20.212 -l 10 -- -m $pkt_size" > $EXPATH/data/output_full.txt
     cd $EXPATH
     python3 $EXPATH/code/output.py $model_name $bandwidth_tx $quota $tmp
-    let tmp+=1
+    num=$(expr $tmp + 1)
 done < $EXPATH/data/input.csv
