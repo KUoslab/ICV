@@ -7,20 +7,22 @@ import json
 import math
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
-
+'''
 model_name = sys.argv[1]
 var_packet_size = int(sys.argv[2])
-var_packet_size = 84
+# var_packet_size = 84
 var_bandwidth_tx = float(sys.argv[3])
 # var_pps_tx = math.ceil(var_bandwidth_tx/float(var_packet_size))
-var_pps_tx = math.ceil((var_bandwidth_tx/10)*14881)
+var_pps_tx = 224306
+var_cpu_usage = 100.18
+'''
 
-'''
 model_name = "random_forest"
-var_packet_size = 128
-var_bandwidth_tx = 408.74
-var_pps_tx = 36403
-'''
+var_packet_size = 1024
+var_bandwidth_tx = 2640.0
+var_pps_tx = 224306
+var_cpu_usage = 100.18
+
 
 model = joblib.load('./model/' + model_name)
 dataset = pd.read_csv('./data/training.csv', names=['thread_quota', 'packet_size','bandwidth_tx', 'pps_tx', 'cpu_usage'])
@@ -33,8 +35,8 @@ train_X_ppr = min_max_scalar.fit_transform(train_X)
 train_y_ppr = min_max_scalar.fit_transform(train_y.reshape(-1,1))
 
 df = pd.DataFrame(pd.Series({'packet_size':var_packet_size, 'bandwidth_tx': var_bandwidth_tx}))
-df.loc['pps_tx'] = var_pps_tx
-df.loc['cpu_usage'] = [60.0]
+df.loc['pps_tx'] = [var_pps_tx]
+df.loc['cpu_usage'] = [var_cpu_usage]
 arr = np.array(df)
 input_data = min_max_scalar.transform(arr)
 
