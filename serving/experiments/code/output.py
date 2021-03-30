@@ -3,9 +3,10 @@ import sys
 import numpy as np
 from sklearn.metrics import mean_squared_log_error
 
+print(len(sys.argv))
+
 model_name = sys.argv[1]
 bandwidth_tx = sys.argv[2]
-tmp = sys.argv[3]
 
 # extract network throughput
 with open("./data/output_full.txt",'r') as f:

@@ -4,4 +4,4 @@ Socket Socket  Message  Elapsed
 Size   Size    Size     Time     Throughput  
 bytes  bytes   bytes    secs.    10^6bits/sec  
 
-131072  16384    128    10.02     940.71   
+131072  16384    128    1.02      938.53   
