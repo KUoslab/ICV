@@ -2,10 +2,8 @@ EXPATH=~/hwlee/Inferencing-CPU-for-network-performance-in-virtualized-environmen
 VM=1-test
 model_name=random_forest
 
-# while IFS=',' read pkt_size bandwidth_tx
-# do
-pkt_size=128
-bandwidth_tx=401.10
+while IFS=',' read pkt_size bandwidth_tx
+do
     echo $pkt_size $bandwidth_tx
 	python3 $EXPATH/code/serving_1.py $model_name $pkt_size $bandwidth_tx >> cpu_quota.txt
     quota=$(<cpu_quota.txt)

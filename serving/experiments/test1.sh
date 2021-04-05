@@ -3,7 +3,7 @@ EXPATH=~/hwlee/Inferencing-CPU-for-network-performance-in-virtualized-environmen
 CGPATH=/sys/fs/cgroup/cpu/machine/qemu-$VM.libvirt-qemu/emulator
 model_name=random_forest
 
-python3 $EXPATH/code/serving_$model_name.py
+python3 $EXPATH/code/serving1_$model_name.py
 
 while IFS=',' read pkt_size slo pps cpu quota
 do
