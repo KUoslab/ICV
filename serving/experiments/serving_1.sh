@@ -4,7 +4,7 @@ model_name=random_forest
 
 while IFS=',' read pkt_size bandwidth_tx
 do
-    python3 $EXPATH/code/serving_1.py $model_name $pkt_size $bandwidth_tx >> cpu_quota.txt
+    python3 $EXPATH/code/main.py $model_name $pkt_size $bandwidth_tx >> cpu_quota.txt
     quota=$(<cpu_quota.txt)
     rm cpu_quota.txt
 
