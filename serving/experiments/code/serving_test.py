@@ -18,29 +18,29 @@ var_cpu_usage = 100.18
 '''
 
 model_name = "random_forest"
-var_packet_size = 64
-var_cpu_usage = 70.00
+# var_packet_size = 64
+var_cpu_usage = 53.18
 
 # 1
-var_bandwidth_tx = 311.01
-var_pps_tx = 27030
+# var_bandwidth_tx = 1000.00
+# var_pps_tx = 200000
 # 2
-# var_bandwidth_tx = 346.96
-# var_pps_tx = 29966
+# var_bandwidth_tx = 400.00
+# var_pps_tx = 45000
 # 3
-# var_bandwidth_tx = 389.19
-# var_pps_tx = 35239
+# var_bandwidth_tx = 450.00
+# var_pps_tx = 50000
 # 4
-# var_bandwidth_tx = 369.82
-# var_pps_tx = 39039
+# var_bandwidth_tx = 500.00
+# var_pps_tx = 65000
 # 5
-# var_bandwidth_tx = 405.91
-# var_pps_tx = 40025
+# var_bandwidth_tx = 600.00
+# var_pps_tx = 80000
 
-# var_packet_size = 1024
+var_packet_size = 1024
 # 1
-# var_bandwidth_tx = 409.24
-# var_pps_tx = 34650
+var_bandwidth_tx = 1240.00
+var_pps_tx = 105102
 # 2
 # var_bandwidth_tx = 964.53
 # var_pps_tx = 81827
