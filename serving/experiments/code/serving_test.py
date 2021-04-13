@@ -15,7 +15,7 @@ y = np.array(dataset['thread_quota'])
 X = np.array(dataset.drop('thread_quota', axis=1))
 train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=0.20, random_state=40)
 
-input_df = pd.read_csv('./data/input_serving.csv', names=['packet_size', 'bandwidth_tx', 'pps_tx', 'cpu_usage'], delimiter='\t')
+input_df = pd.read_csv('./data/input_serving.csv', names=['packet_size', 'bandwidth_tx', 'pps_tx', 'cpu_usage'], delimiter=',')
 input_arr = np.array(input_df)
 print(input_arr)
 
@@ -28,7 +28,7 @@ preds = model.predict(input_data)
 output_data = min_max_scalar.inverse_transform(preds.reshape(-1, 1))
 
 for i in range(len(output_data)):
-    print(output_data[i][0])
+    print(i+1, output_data[i][0])
 
 
 
