@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split, RandomizedSearchCV, GridSe
 from sklearn.metrics import mean_squared_log_error, r2_score
 import csv
 
-
+'''
 model = joblib.load('./model/m2')
 dataset = pd.read_csv('./data/m2_train.csv', names=['thread_quota', 'packet_size','bandwidth_tx', 'pps_tx', 'cpu_usage'])
 y = np.array(dataset['thread_quota'])
@@ -38,6 +38,7 @@ with open('./data/cgroup_input.csv','w', newline="") as f:
 
 # for i in range(len(output_data)):
 #     print(i+1, output_data[i][0])
+'''
 
 '''
 dataset = pd.read_csv('./data/m2_train.csv', names=['thread_quota', 'packet_size', 'bandwidth_tx', 'pps_tx', 'cpu_usage'])
